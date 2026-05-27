@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: devops-project-configmap
+data: 
+ ENV: "development"
+ APP_NAME: "devops-project"
