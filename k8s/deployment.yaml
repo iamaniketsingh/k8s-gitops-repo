@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-project-deployment
+  labels:
+    app: devops-project-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-project
+  template:
+    metadata:
+      labels:
+        app: devops-project
+    spec:
+      containers:
+      - name: project-container
+        image: vegeta4/devops-project:latest
+        ports:
+        - containerPort: 8080
