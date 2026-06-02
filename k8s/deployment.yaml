@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: project-container
-          image: vegeta4/devops-project:6
+          image: vegeta4/devops-project:7
           ports:
             - containerPort: 8080
