@@ -19,3 +19,35 @@ spec:
           image: vegeta4/devops-project:9
           ports:
             - containerPort: 8080
+          containers:
+  - name: project-container
+    image: vegeta4/devops-project:latest
+ 
+    ports:
+      - containerPort: 8080
+ 
+    startupProbe:
+      httpGet:
+        path: /actuator/health
+        port: 8080
+      failureThreshold: 30
+      periodSeconds: 5
+ 
+    readinessProbe:
+      httpGet:
+        path: /actuator/health/readiness
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      timeoutSeconds: 2
+      successThreshold: 1
+      failureThreshold: 3
+ 
+    livenessProbe:
+      httpGet:
+        path: /actuator/health/liveness
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 20
+      timeoutSeconds: 2
+      failureThreshold: 3
